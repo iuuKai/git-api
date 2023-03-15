@@ -2,7 +2,7 @@
  * @Author: iuukai
  * @Date: 2022-06-09 16:59:49
  * @LastEditors: iuukai
- * @LastEditTime: 2023-03-15 08:53:23
+ * @LastEditTime: 2023-03-15 09:27:20
  * @FilePath: \vercel\GitAPI\module\gitee\oauth_authorize.js
  * @Description:
  * @QQ/微信: 790331286
@@ -28,8 +28,7 @@ module.exports = (method, query, request) => {
 					meta: {
 						code: 200,
 						msg: 'OK',
-						targetURL: url,
-						process
+						targetURL: url
 					}
 				}
 			})
@@ -38,8 +37,7 @@ module.exports = (method, query, request) => {
 				status: 400,
 				body: {
 					code: 400,
-					err: '缺少请求参数!',
-					process
+					err: '缺少请求参数!'
 				}
 			})
 		}
