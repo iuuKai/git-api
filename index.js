@@ -4,6 +4,7 @@ const express = require('express')
 const request = require('./util/request')
 // const fileUpload = require('express-fileupload')
 const decode = require('safe-decode-uri-component')
+process.env.MODE = process.env.HOST ? 'build' : 'dev'
 
 /**
  * @typedef {{
