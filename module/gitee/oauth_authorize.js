@@ -29,8 +29,7 @@ module.exports = (method, query, request) => {
 						msg: 'OK',
 						targetURL: url,
 						mode: process.env.MODE,
-						host: process.env.HOST,
-						process
+						host: process.env.HOST
 					}
 				}
 			})
@@ -41,8 +40,7 @@ module.exports = (method, query, request) => {
 					code: 400,
 					err: '缺少请求参数!',
 					mode: process.env.MODE,
-					host: process.env.HOST,
-					process
+					host: process.env.HOST
 				}
 			})
 		}
