@@ -157,7 +157,7 @@ async function consturctServer() {
 				Object.keys($variables).forEach(k => (query[k] = $variables[k]))
 				return true
 			})
-			const moduleResponse = await moduleDef.module(method, query, request, token, req.headers)
+			const moduleResponse = await moduleDef.module(method, query, request, token)
 			console.log('[OK]', decode(req.originalUrl))
 			res.status(moduleResponse.status).send(moduleResponse.body)
 		} catch (moduleResponse) {
