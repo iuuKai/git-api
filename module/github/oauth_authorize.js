@@ -11,10 +11,11 @@ const config = require('../../config')
 
 module.exports = (method, query, request) => {
 	return new Promise((resolve, reject) => {
+		const mode = process.env.NODE_ENV === 'production' ? 'build' : 'dev'
 		const { redirect_uri } = query
 
 		if (redirect_uri) {
-			const client_id = config[process.env.MODE]['github']['client_id']
+			const client_id = config[mode]['github']['client_id']
 			const url = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}`
 			resolve({
 				status: 200,

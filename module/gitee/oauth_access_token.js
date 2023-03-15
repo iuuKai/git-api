@@ -11,8 +11,9 @@ const config = require('../../config')
 
 // 获取 access_token
 module.exports = (method, query, request) => {
-	query['client_id'] = config['dev']['gitee']['client_id']
-	query['client_secret'] = config['dev']['gitee']['client_secret']
+	const mode = process.env.NODE_ENV === 'production' ? 'build' : 'dev'
+	query['client_id'] = config[mode]['gitee']['client_id']
+	query['client_secret'] = config[mode]['gitee']['client_secret']
 	query['grant_type'] = 'authorization_code'
 	return request(method, `https://gitee.com/oauth/token`, query)
 }

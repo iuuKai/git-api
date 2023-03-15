@@ -11,7 +11,8 @@ const config = require('../../config')
 
 // 获取 access_token
 module.exports = (method, query, request) => {
-	query['client_id'] = config[process.env.MODE]['github']['client_id']
-	query['client_secret'] = config[process.env.MODE]['github']['client_secret']
+	const mode = process.env.NODE_ENV === 'production' ? 'build' : 'dev'
+	query['client_id'] = config[mode]['github']['client_id']
+	query['client_secret'] = config[mode]['github']['client_secret']
 	return request(method, `https://github.com/login/oauth/access_token`, query)
 }
