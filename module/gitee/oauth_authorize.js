@@ -14,7 +14,7 @@ module.exports = (method, query, request) => {
 		const { redirect_uri } = query
 
 		if (redirect_uri) {
-			const client_id = config[process.env.MODE]['gitee']['client_id']
+			const client_id = config['dev']['gitee']['client_id']
 			const url = `https://gitee.com/oauth/authorize?client_id=${client_id}&redirect_uri=${encodeURIComponent(
 				redirect_uri
 			)}&response_type=code`
