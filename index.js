@@ -112,7 +112,6 @@ async function consturctServer() {
 			const token = req.headers['authorization'] || ''
 			const query = Object.assign({}, req.query, req.body, req.files)
 			const reg = /(http|https):\/\/[^/\r\n\?]+\/[^\r\n\?]*(?!\?)?/
-			const host = req.headers.host
 			// 捕捉客户端发送请求页面路径，当且仅当 localhost:4000/ 有效，不适用于 localhost:4000/xxx.html（可通过传参解决）
 			if (
 				moduleName === 'gitee' &&
@@ -158,7 +157,7 @@ async function consturctServer() {
 				Object.keys($variables).forEach(k => (query[k] = $variables[k]))
 				return true
 			})
-			const moduleResponse = await moduleDef.module(method, query, request, token, host)
+			const moduleResponse = await moduleDef.module(method, query, request, token, req.headers)
 			console.log('[OK]', decode(req.originalUrl))
 			res.status(moduleResponse.status).send(moduleResponse.body)
 		} catch (moduleResponse) {

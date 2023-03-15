@@ -9,7 +9,7 @@
  */
 const config = require('../../config')
 
-module.exports = (method, query, request, host) => {
+module.exports = (method, query, request, header) => {
 	return new Promise((resolve, reject) => {
 		const { redirect_uri } = query
 
@@ -28,7 +28,7 @@ module.exports = (method, query, request, host) => {
 						code: 200,
 						msg: 'OK',
 						targetURL: url,
-						host
+						header
 					}
 				}
 			})
@@ -38,7 +38,7 @@ module.exports = (method, query, request, host) => {
 				body: {
 					code: 400,
 					err: '缺少请求参数!',
-					host
+					header
 				}
 			})
 		}
