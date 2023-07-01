@@ -2,7 +2,7 @@
  * @Author: iuukai
  * @Date: 2022-06-06 20:03:51
  * @LastEditors: iuukai
- * @LastEditTime: 2023-03-13 20:15:44
+ * @LastEditTime: 2023-06-29 06:12:03
  * @FilePath: \vercel\GitAPI\util\request.js
  * @Description:
  * @QQ/微信: 790331286
@@ -12,6 +12,7 @@ const parseLinkHeader = require('parse-link-header')
 const http = require('http')
 const https = require('https')
 const { URLSearchParams } = require('url')
+const { removeQuotes } = require('./custom')
 // request.debug = true // 开启可看到更详细信息
 const UNKNOWN_ERROR = '未知错误'
 
@@ -66,7 +67,10 @@ const createRequest = (method, url, data, token) => {
 					})
 				}
 				if ('link' in res.headers) {
-					answer.body.meta = Object.assign(answer.body.meta, parseLinkHeader(res.headers.link))
+					answer.body.meta = Object.assign(
+						answer.body.meta,
+						removeQuotes(parseLinkHeader(res.headers.link))
+					)
 				}
 
 				answer.status = 100 < answer.status && answer.status < 600 ? answer.status : 400

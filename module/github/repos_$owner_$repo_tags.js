@@ -10,5 +10,5 @@
 // 获取仓库所有tags
 module.exports = (method, query, request, token) => {
 	const { owner, repo } = query
-	return request(method, `https://api.github.com/repos/${owner}/${repo}/tags`, {}, token)
+	return request(method, `https://api.github.com/repos/${owner}/${repo}/tags`, query, token)
 }

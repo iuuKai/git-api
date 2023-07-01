@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const dayjs = require('dayjs')
 const express = require('express')
 const request = require('./util/request')
 // const fileUpload = require('express-fileupload')
@@ -159,7 +160,7 @@ async function consturctServer() {
 				return true
 			})
 			const moduleResponse = await moduleDef.module(method, query, request, token)
-			console.log('[OK]', decode(req.originalUrl))
+			console.log('[OK]', `[${dayjs().format('YYYY-MM-DD HH:mm:ss')}]`, decode(req.originalUrl))
 			res.status(moduleResponse.status).send(moduleResponse.body)
 		} catch (moduleResponse) {
 			if (!moduleResponse.body) {
@@ -170,7 +171,7 @@ async function consturctServer() {
 				})
 				return
 			}
-			console.log('Error', moduleResponse.body)
+			console.log('Error', `[${dayjs().format('YYYY-MM-DD HH:mm:ss')}]`, moduleResponse.body)
 			res.status(moduleResponse.status).send(moduleResponse.body)
 		}
 	})

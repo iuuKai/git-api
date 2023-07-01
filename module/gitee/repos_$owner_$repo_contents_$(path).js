@@ -12,7 +12,9 @@ module.exports = (method, query, request, token) => {
 	const { owner, repo, path } = query
 	return request(
 		method,
-		`https://gitee.com/api/v5/repos/${owner}/${repo}/contents${path ? '/' + path : ''}`,
+		`https://gitee.com/api/v5/repos/${owner}/${repo}/contents${
+			path ? '/' + encodeURIComponent(path) : ''
+		}`,
 		query,
 		token
 	)
