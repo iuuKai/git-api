@@ -2,7 +2,7 @@
  * @Author: iuukai
  * @Date: 2022-06-06 20:03:51
  * @LastEditors: iuukai
- * @LastEditTime: 2023-06-29 06:12:03
+ * @LastEditTime: 2023-08-05 05:46:11
  * @FilePath: \vercel\GitAPI\util\request.js
  * @Description:
  * @QQ/微信: 790331286
@@ -83,6 +83,7 @@ const createRequest = (method, url, data, token) => {
 				answer.body = {
 					code: err?.response?.status ?? err.errno ?? 502,
 					msg: err.code ?? UNKNOWN_ERROR,
+					targetURL: url,
 					data: err?.response?.data ?? err.code ?? UNKNOWN_ERROR
 				}
 				reject(answer)
